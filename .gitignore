@@ -25,6 +25,9 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
+# opencode MCP config
+.opencode/
+
 # submodules?
 # typ/
 # packages/
