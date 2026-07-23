@@ -1,6 +1,6 @@
 #import "/typ/templates/blog.typ": *
 
-#show: main.with(
+#show: main-zh.with(
   title: "Graphic Basic 2：Rasterization & Z-Buffering",
   desc: [本文是我关于图形学第二次作业（光栅化与深度缓冲）的一些随笔。],
   date: "2024-11-05",

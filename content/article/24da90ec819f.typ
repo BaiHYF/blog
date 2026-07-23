@@ -1,6 +1,6 @@
 #import "/typ/templates/blog.typ": *
 
-#show: main.with(
+#show: main-zh.with(
   title: "C#代码规范",
   desc: [C\#代码规范],
   date: "2025-08-12",

@@ -1,6 +1,6 @@
 #import "/typ/templates/blog.typ": *
 
-#show: main.with(
+#show: main-zh.with(
   title: "Build an App to Make Yourself Happy — Andriod Lesson Note 01: Introduction to Andriod",
   desc: [中山大学腾讯客户端开发菁英班2024课程笔记 01],
   date: "2024-10-27",

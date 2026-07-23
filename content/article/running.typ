@@ -1,6 +1,6 @@
 #import "/typ/templates/blog.typ": *
 
-#show: main.with(
+#show: main-zh.with(
   title: "Running",
   desc: [我很久之前就了解到这本书的存在了，我一直是村上春树的忠实读者，虽然读他的作品不算多。我在旧书摊上买了实体书，之后又下载了 EPUB 的电子书版本，然后就没有然后了。之后很长一段时间我都忽略，或者...],
   date: "2024-11-08",

@@ -1,6 +1,6 @@
 #import "/typ/templates/blog.typ": *
 
-#show: main.with(
+#show: main-zh.with(
   title: "Easy Vibe学习过程记录",
   desc: [\[Easy-Vibe 教程\]\(https://datawhalechina.github.io/easy-vibe/zh-cn/stage-1/ai-capabilities-through-g...],
   date: "2026-07-17",

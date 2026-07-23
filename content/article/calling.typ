@@ -1,6 +1,6 @@
 #import "/typ/templates/blog.typ": *
 
-#show: main.with(
+#show: main-zh.with(
   title: "Calling",
   desc: [**Calling** 是番剧\[**《永生之酒》（Baccano!）**\]\(https://movie.douban.com/subject/3326764/\) 的 ED.，由织田香织（織田かお...],
   date: "2024-09-15",

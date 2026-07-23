@@ -1,6 +1,6 @@
 #import "/typ/templates/blog.typ": *
 
-#show: main.with(
+#show: main-zh.with(
   title: "2025.4.18",
   desc: [现在是2025年4月18日凌晨1点，我睡不着。],
   date: "2025-04-18",

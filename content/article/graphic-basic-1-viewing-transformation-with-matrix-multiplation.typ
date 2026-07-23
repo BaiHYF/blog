@@ -1,6 +1,6 @@
 #import "/typ/templates/blog.typ": *
 
-#show: main.with(
+#show: main-zh.with(
   title: "Graphic Basic 1 : Viewing Transformation with Matrix Multiplation",
   desc: [本人关于 MVP 矩阵变换及视口矩阵的一些记录。这篇文章并不会包含详细的数学推导，只是一些随笔。],
   date: "2024-10-25",

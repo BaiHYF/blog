@@ -1,6 +1,6 @@
 #import "/typ/templates/blog.typ": *
 
-#show: main.with(
+#show: main-zh.with(
   title: "2025.5.30",
   desc: [2025.5.30],
   date: "2025-05-30",

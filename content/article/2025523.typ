@@ -1,6 +1,6 @@
 #import "/typ/templates/blog.typ": *
 
-#show: main.with(
+#show: main-zh.with(
   title: "2025.5.23",
   desc: [很羡慕一些其他学校的，以及其他某些专业的同学，课少，到了现在这个学期（大三下），课基本上上完了，或只剩下零星的一两门，一周零星的一两节。],
   date: "2025-05-23",

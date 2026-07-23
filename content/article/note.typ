@@ -1,6 +1,6 @@
 #import "/typ/templates/blog.typ": *
 
-#show: main.with(
+#show: main-zh.with(
   title: "行测note",
   desc: [- 等差],
   date: "2025-08-20",

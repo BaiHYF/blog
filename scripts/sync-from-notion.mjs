@@ -490,14 +490,20 @@ function escapeTypstString(text) {
   return text.replace(/"/g, '\\"');
 }
 
-function generateTemplateHeader(title, date, tags, desc) {
+function hasChinese(text) {
+  return /[\u4e00-\u9fff\u3400-\u4dbf]/.test(text);
+}
+
+function generateTemplateHeader(title, date, tags, desc, isChinese) {
   const tagList = tags.length > 0
     ? tags.map(t => `    blog-tags.${t},`).join("\n")
     : "    blog-tags.misc,";
 
+  const showMain = isChinese ? "main-zh" : "main";
+
   return `#import "/typ/templates/blog.typ": *
 
-#show: main.with(
+#show: ${showMain}.with(
   title: "${escapeTypstString(title)}",
   desc: [${escapeTypstContent(desc || title)}],
   date: "${date}",
@@ -595,7 +601,8 @@ async function syncAll() {
     const cleanDesc = desc.replace(/\$`[^`]*`\$/g, "").replace(/\$[^$]*\$/g, "").replace(/<[^>]+>/g, "").trim() || title;
     totalImageDownloads += imageDownloads.length;
 
-    const header = generateTemplateHeader(title, date, tags, cleanDesc);
+    const isChinese = hasChinese(title) || hasChinese(cleanDesc) || hasChinese(content);
+const header = generateTemplateHeader(title, date, tags, cleanDesc, isChinese);
     const fullContent = header + content.trim() + "\n";
 
     fs.writeFileSync(filePath, fullContent, "utf-8");

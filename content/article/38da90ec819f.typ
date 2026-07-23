@@ -1,6 +1,6 @@
 #import "/typ/templates/blog.typ": *
 
-#show: main.with(
+#show: main-zh.with(
   title: "入职材料准备",
   desc: [- \[x\] 居民户口簿],
   date: "2026-06-28",
