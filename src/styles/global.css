@@ -273,6 +273,10 @@ nav a:hover,
   display: none;
 }
 
+.typst-doc .typst-text {
+  fill: var(--main-color) !important;
+}
+
 figcaption {
   text-align: center;
 }

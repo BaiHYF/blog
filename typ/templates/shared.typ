@@ -65,7 +65,7 @@
   set text(font: web-fonts) if sys-is-html-target
 
   set text(main-size) if sys-is-html-target
-  set text(fill: rgb("dfdfd6")) if is-dark-theme and sys-is-html-target
+  set text(fill: rgb("dfdfd6")) if sys-is-html-target
   show link: set text(fill: dash-color)
 
   show heading: it => {
