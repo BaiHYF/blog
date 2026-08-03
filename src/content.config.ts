@@ -3,8 +3,8 @@ import { glob } from "astro/loaders";
 import { defineCollection, z } from "astro:content";
 
 const blog = defineCollection({
-  // Load Typst files in the `content/article/` directory.
-  loader: glob({ base: "./content/article", pattern: "**/*.typ" }),
+  // Load Markdown/MDX/Typst files in the `content/article/` directory.
+  loader: glob({ base: "./content/article", pattern: "**/*.{md,mdx,typ}" }),
   // Type-check frontmatter using a schema
   schema: z.object({
     title: z.string(),
@@ -20,8 +20,8 @@ const blog = defineCollection({
 const archive = kEnableArchive
   ? {
       archive: defineCollection({
-        // Load Typst files in the `content/article/` directory.
-        loader: glob({ base: "./content/archive", pattern: "**/*.typ" }),
+        // Load Markdown/MDX/Typst files in the `content/archive/` directory.
+        loader: glob({ base: "./content/archive", pattern: "**/*.{md,mdx,typ}" }),
         // Type-check frontmatter using a schema
         schema: z.object({
           title: z.string(),

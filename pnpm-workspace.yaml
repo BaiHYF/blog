@@ -1,4 +1,7 @@
 packages:
-  - "."
-  - "packages/tylant/packages/*"
-  - "!**/test/**"
+  - .
+  - packages/tylant/packages/*
+  - '!**/test/**'
+
+patchedDependencies:
+  typstx@0.0.1: patches/typstx@0.0.1.patch

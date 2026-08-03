@@ -1,0 +1,13 @@
+diff --git a/lib/core.js b/lib/core.js
+index 23a98a49b9a587395b2343bb25a5cfa3e5fc99a1..606abb62a9f4fd8a529683b5fc7d5f272e3ff225 100644
+--- a/lib/core.js
++++ b/lib/core.js
+@@ -190,7 +190,7 @@ export const rehypeTransformJsxInTypst = () => {
+   // find all html.elem("script", attrs: ("data-jsx": "import Button from 'Button.jsx;'"))
+   // and transform them to html.elem("script", attrs: ("data-jsx": "import Button from 'Button.jsx;'"))
+   function compileJsx(node) {
+-    if (node.type === 'element' && node.tagName === 'script') {
++    if (node.type === 'element' && node.tagName === 'script' && node.properties['data-jsx'] !== undefined) {
+       let hast = jsx2hast(node.properties['data-jsx'])
+       if (!hast) {
+         throw new Error('Failed to extract jsx from script')
