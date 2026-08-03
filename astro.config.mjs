@@ -46,6 +46,9 @@ export default defineConfig({
         default: "html",
         detect: () => "html",
       },
+      fontArgs: [
+        { fontPaths: ["./src/assets/fonts", "./assets/fonts"] },
+      ],
     }),
   ],
 

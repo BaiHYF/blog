@@ -22,7 +22,14 @@
   "Source Han Serif SC",
 )
 
+#let web-fonts = (
+  "MapleMono",
+  "Libertinus Serif",
+  "Source Han Serif SC",
+)
+
 #let code-font = (
+  "MapleMono",
   "DejaVu Sans Mono",
 )
 
@@ -55,9 +62,10 @@
   set text(lang: lang) if lang != none
   set text(region: region) if region != none
   set text(font: pdf-fonts) if build-kind == "monthly"
+  set text(font: web-fonts) if sys-is-html-target
 
   set text(main-size) if sys-is-html-target
-  set text(fill: rgb("dfdfd6")) if is-dark-theme and sys-is-html-target
+  set text(fill: rgb("dfdfd6")) if sys-is-html-target
   show link: set text(fill: dash-color)
 
   show heading: it => {

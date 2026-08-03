@@ -55,11 +55,8 @@
 }
 
 body {
-  --vp-font-family-base:"MapleMono", "Inter Variable", "Inter", "Noto Sans SC",
-    "PingFang SC", "Microsoft Yahei", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --vp-font-family-mono: "MapleMono", ui-monospace, "Menlo", "Monaco", "Consolas",
-    "Liberation Mono", "Courier New", monospace;
+  --vp-font-family-base: "MapleMono", "Noto Sans SC", "PingFang SC", "Microsoft Yahei", ui-sans-serif, system-ui, sans-serif;
+  --vp-font-family-mono: "MapleMono", ui-monospace, "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace;
 
   font-family: var(--vp-font-family-base);
   margin: 0;
@@ -271,6 +268,10 @@ nav a:hover,
 }
 .code-image.themed .dark {
   display: none;
+}
+
+.typst-doc .typst-text {
+  fill: var(--main-color) !important;
 }
 
 figcaption {
