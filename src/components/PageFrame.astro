@@ -61,6 +61,10 @@ const { pageType = "" } = Astro.props;
           document.documentElement.classList.add("theme-transition-ready");
         });
 
+        // First paint fade-in for the server-rendered page.
+        const firstPage = document.querySelector(".page");
+        if (firstPage) firstPage.classList.add("is-entering");
+
         const menuBtn = document.querySelector(".menu-trigger-toggle");
         const menu = document.getElementById("site-menu-links");
         if (menuBtn && menu) {
@@ -94,6 +98,7 @@ const { pageType = "" } = Astro.props;
         htmx.on("htmx:responseError", fallback);
 
         const scrollMemory = {};
+        let isContentPageSwap = false;
 
         function pathKey(url) {
           try {
@@ -107,17 +112,54 @@ const { pageType = "" } = Astro.props;
           scrollMemory[pathKey(window.location.href)] = window.scrollY;
         }
 
-        htmx.on("htmx:beforeSwap", function () {
+        function responseHasContentPage(response) {
+          if (typeof response !== "string") return false;
+          return !!new DOMParser().parseFromString(response, "text/html").querySelector(".content-page");
+        }
+
+        function configurePageSwap(response, swapDetail) {
+          const currentPage = document.querySelector(".page");
+          isContentPageSwap = !!(
+            currentPage &&
+            currentPage.querySelector(".content-page") &&
+            responseHasContentPage(response)
+          );
+          document.body.classList.toggle("content-page-swap", isContentPageSwap);
+          if (isContentPageSwap && swapDetail) {
+            swapDetail.swapOverride = "outerHTML swap:150ms";
+          }
+          if (currentPage) currentPage.classList.add("is-leaving");
+        }
+
+        htmx.on("htmx:beforeSwap", function (event) {
           captureScroll();
           document.body.classList.add("skip-intro");
-          const current = document.querySelector(".page");
-          if (current) current.classList.add("is-leaving");
+          configurePageSwap(event.detail.serverResponse, event.detail);
         });
 
-        htmx.on("htmx:afterSwap", function () {
-          window.scrollTo(0, 0);
-          const current = document.querySelector(".page");
-          if (current) current.classList.remove("is-leaving");
+        htmx.on("htmx:afterSettle", function () {
+          const nextPage = document.querySelector(".page");
+          if (nextPage) {
+            nextPage.classList.remove("is-leaving");
+            if (isContentPageSwap) {
+              nextPage.classList.remove("is-entering");
+              nextPage.classList.add("is-content-entering");
+              nextPage.addEventListener("animationend", function (e) {
+                if (e.target.closest(".content-surface") && e.animationName === "contentPageEnter") {
+                  nextPage.classList.remove("is-content-entering");
+                }
+              });
+            } else {
+              nextPage.classList.remove("is-content-entering");
+              nextPage.classList.add("is-entering");
+              nextPage.addEventListener("animationend", function (e) {
+                if (e.target === nextPage && e.animationName === "pageEnter") {
+                  nextPage.classList.remove("is-entering");
+                }
+              });
+            }
+          }
+          document.body.classList.remove("content-page-swap");
         });
 
         // Restore scroll on history (back/forward) navigation.

@@ -589,7 +589,7 @@ void main() { gl_Position = vec4(position, 0.0, 1.0); }
     waveTime += dt * waveSpeed;
     grainTime += dt * grainSpeed;
 
-    var night = updateNightBlend(now * 0.001);
+    var night = updateNightBlend(now);
 
     gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
     gl.useProgram(program);

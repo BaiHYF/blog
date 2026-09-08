@@ -490,16 +490,42 @@ body.no-webgl .background canvas { display: none; }
 }
 
 /* ==========================================================================
-   PAGE FADE-IN
+   PAGE TRANSITIONS
    ========================================================================== */
-.page { animation: pageEnter 0.4s ease both; }
+/* Enter animations are applied via JS-added classes (initial load set .is-entering,
+   htmx afterSettle picks .is-entering (whole page) or .is-content-entering (surface)). */
+.page.is-entering { animation: pageEnter 0.4s ease both; }
+.page.is-content-entering .content-surface { animation: contentPageEnter 0.3s ease both; }
+
+/* Leaving fade for full-page (non content<->content) navigation. */
 .page.is-leaving {
   opacity: 0;
   transition: opacity 0.22s ease-out;
   animation: none;
 }
+
+/* Content<->content navigation: keep the page (and its background veil) fully
+   opaque and fade only the readable content surface, so the backdrop never flashes. */
+body.content-page-swap .page,
+body.content-page-swap .page.is-leaving,
+body.content-page-swap .page.htmx-settling {
+  opacity: 1;
+  transition: none;
+  animation: none;
+}
+body.content-page-swap .page.is-leaving .content-surface {
+  opacity: 0;
+  transition: opacity 0.15s ease-out;
+}
+body.content-page-swap .page.htmx-settling .content-surface {
+  opacity: 0;
+  transition: none;
+}
+
 @keyframes pageEnter { from { opacity: 0; } to { opacity: 1; } }
-body.skip-intro .page { animation-duration: 0.01ms; }
+@keyframes contentPageEnter { from { opacity: 0; } to { opacity: 1; } }
+body.skip-intro .page.is-entering,
+body.skip-intro .page.is-content-entering .content-surface { animation-duration: 0.01ms; }
 
 /* ==========================================================================
    UTILITY
