@@ -1,0 +1,42 @@
+<svg width="640" height="510" viewBox="0 0 1080 860" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-vendor-table-title fig-vendor-table-desc">
+  <title id="fig-vendor-table-title">主要厂商同时提供 CLI 与 MCP</title>
+  <desc id="fig-vendor-table-desc">列示飞书、Notion、GitHub、Google、微软、钉钉、企业微信等厂商同时提供 CLI 与 MCP 的分工方式。</desc>
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap');</style>
+  </defs>
+  <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+  <text x="60" y="60" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" letter-spacing="0.18em">VENDOR PRACTICE · 2026</text>
+  <text x="60" y="100" fill="#2d3142" font-size="28" font-family="'Geist', sans-serif" font-weight="600">两头下注：CLI 与 MCP 并存的厂商</text>
+  <text x="60" y="128" fill="#7a8399" font-size="12" font-family="'Geist', sans-serif">共性：官方 CLI 几乎都配套官方 Skill；MCP 面向图形宿主与平台生态。</text>
+
+  <g font-family="'Geist', sans-serif">
+    <rect x="60" y="160" width="960" height="96" rx="6" fill="#ffffff" stroke="rgba(45,49,66,0.18)" stroke-width="1"/>
+    <text x="84" y="192" fill="#2d3142" font-size="15" font-weight="600">飞书 Lark</text>
+    <text x="700" y="192" fill="#7a8399" font-size="11" font-family="'Geist Mono', monospace">200+ 命令 · 26 Skills · 18 域</text>
+    <text x="84" y="222" fill="#4f5d75" font-size="12">CLI：个人 OAuth、富文本保真、无需常驻。MCP：默认 20 个高频工具，底层 1270+ 接口须按需切片。</text>
+    <text x="84" y="242" fill="#7a8399" font-size="11">按身份与场景分工：个人操作走 CLI，bot 常驻与平台生态走 MCP。</text>
+
+    <rect x="60" y="272" width="960" height="80" rx="6" fill="#ffffff" stroke="rgba(45,49,66,0.18)" stroke-width="1"/>
+    <text x="84" y="304" fill="#2d3142" font-size="15" font-weight="600">Notion</text>
+    <text x="700" y="304" fill="#7a8399" font-size="11" font-family="'Geist Mono', monospace">22 tools · ntn CLI · notion-cli Skill</text>
+    <text x="84" y="334" fill="#4f5d75" font-size="12">托管 MCP 服务无 shell 的网页端用户；ntn CLI 面向开发者，把 API 原样搬进终端。</text>
+
+    <rect x="60" y="368" width="960" height="80" rx="6" fill="#ffffff" stroke="rgba(45,49,66,0.18)" stroke-width="1"/>
+    <text x="84" y="400" fill="#2d3142" font-size="15" font-weight="600">GitHub / Google / 微软</text>
+    <text x="700" y="400" fill="#7a8399" font-size="11" font-family="'Geist Mono', monospace">gh + MCP · gws · Playwright CLI</text>
+    <text x="84" y="430" fill="#4f5d75" font-size="12">gh 成熟多年，本地/CI 偏 CLI，Cursor/Desktop 走 MCP。gws 与 Playwright CLI 都声明 CLI 默认、MCP 可选。</text>
+
+    <rect x="60" y="464" width="960" height="80" rx="6" fill="#ffffff" stroke="rgba(45,49,66,0.18)" stroke-width="1"/>
+    <text x="84" y="496" fill="#2d3142" font-size="15" font-weight="600">钉钉 dws / 企业微信 wecom-cli</text>
+    <text x="700" y="496" fill="#7a8399" font-size="11" font-family="'Geist Mono', monospace">CLI 壳下是 MCP Client</text>
+    <text x="84" y="526" fill="#4f5d75" font-size="12">第三方拆解：外壳是命令行，内部拉工具注册表、经 JSON-RPC 执行——执行层与连接层已经融合。</text>
+  </g>
+
+  <rect x="60" y="576" width="960" height="180" rx="6" fill="rgba(235,108,54,0.05)" stroke="#eb6c36" stroke-width="1"/>
+  <text x="84" y="608" fill="#eb6c36" font-size="11" font-family="'Geist Mono', monospace" letter-spacing="0.08em">对普通团队的启示</text>
+  <text x="84" y="644" fill="#2d3142" font-size="13" font-weight="600">1 · 业务面越广，越用 CLI 承接长尾，MCP 只留精简高频工具</text>
+  <text x="84" y="674" fill="#2d3142" font-size="13" font-weight="600">2 · 目标 Agent 分布是硬约束：本地终端 Agent → CLI 能落地</text>
+  <text x="84" y="704" fill="#2d3142" font-size="13" font-weight="600">3 · 新 CLI 的 Skill / help / 错误码投入省不掉</text>
+  <text x="84" y="734" fill="#2d3142" font-size="13" font-weight="600">4 · 别分先后主次，明确各自承接什么场景</text>
+</svg>

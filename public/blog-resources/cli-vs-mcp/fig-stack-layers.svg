@@ -1,0 +1,36 @@
+<svg width="646" height="349" viewBox="0 0 1000 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-stack-layers-title fig-stack-layers-desc">
+  <title id="fig-stack-layers-title">Agent 连接栈的分层</title>
+  <desc id="fig-stack-layers-desc">Skill 在上层组织知识，CLI 负责本地执行，MCP 负责远程连接与治理，层与层可以组合。</desc>
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap');</style>
+  </defs>
+  <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+  <text x="60" y="60" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" letter-spacing="0.18em">AGENT STACK · LAYERS</text>
+  <text x="60" y="100" fill="#2d3142" font-size="28" font-family="'Geist', sans-serif" font-weight="600">Agent 连接栈的分层</text>
+  <text x="60" y="128" fill="#7a8399" font-size="12" font-family="'Geist', sans-serif">每一层只做自己擅长的事：上层组织知识，中层做本地执行，下层负责远程连接。</text>
+
+  <g>
+    <text x="360" y="196" fill="#2d3142" font-size="16" font-family="'Geist', sans-serif" font-weight="600">Skill（知识层）</text>
+    <text x="360" y="220" fill="#4f5d75" font-size="12" font-family="'Geist', sans-serif">怎么做：顺序、边界、失败兜底</text>
+  </g>
+  <rect x="60" y="244" width="880" height="8" rx="4" fill="rgba(235,108,54,0.35)"/>
+  <g>
+    <rect x="60" y="272" width="420" height="96" rx="6" fill="#ffffff" stroke="#4f5d75" stroke-width="1"/>
+    <text x="84" y="304" fill="#2d3142" font-size="16" font-family="'Geist', sans-serif" font-weight="600">CLI（本地执行层）</text>
+    <text x="84" y="330" fill="#4f5d75" font-size="12" font-family="'Geist', sans-serif">高效跑命令；模型有先验，token 低，可组合、可调试</text>
+    <text x="84" y="352" fill="#7a8399" font-size="10" font-family="'Geist Mono', monospace">前提：Agent 能跑 shell</text>
+  </g>
+  <g>
+    <rect x="520" y="272" width="420" height="96" rx="6" fill="#ffffff" stroke="#4f5d75" stroke-width="1"/>
+    <text x="544" y="304" fill="#2d3142" font-size="16" font-family="'Geist', sans-serif" font-weight="600">MCP（远程连接层）</text>
+    <text x="544" y="330" fill="#4f5d75" font-size="12" font-family="'Geist', sans-serif">远程服务发现、授权、审计与治理</text>
+    <text x="544" y="352" fill="#7a8399" font-size="10" font-family="'Geist Mono', monospace">前提：多宿主复用 / 代表他人 / 远程</text>
+  </g>
+  <rect x="60" y="396" width="880" height="8" rx="4" fill="rgba(79,93,117,0.25)"/>
+  <g>
+    <rect x="60" y="420" width="880" height="64" rx="6" fill="rgba(45,49,66,0.04)" stroke="rgba(45,49,66,0.18)" stroke-width="1"/>
+    <text x="500" y="446" fill="#2d3142" font-size="14" font-family="'Geist', sans-serif" font-weight="600" text-anchor="middle">A2A（Agent 间协作层）</text>
+    <text x="500" y="470" fill="#4f5d75" font-size="12" font-family="'Geist', sans-serif" text-anchor="middle">多个 Agent 之间交换任务与结果</text>
+  </g>
+</svg>

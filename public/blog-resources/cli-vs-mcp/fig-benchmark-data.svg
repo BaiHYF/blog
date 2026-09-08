@@ -1,0 +1,48 @@
+<svg width="646" height="538" viewBox="0 0 1080 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-benchmark-title fig-benchmark-desc">
+  <title id="fig-benchmark-title">Scalekit 基准：token、成功率与成本</title>
+  <desc id="fig-benchmark-desc">同一模型同一批 GitHub 任务，比较裸 CLI、CLI 加技能文档与 GitHub MCP server 三组接入的 token 消耗、成功率与月度成本。</desc>
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap');</style>
+  </defs>
+  <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+  <text x="60" y="60" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" letter-spacing="0.18em">BENCHMARK · SCALEKIT 2026-03</text>
+  <text x="60" y="100" fill="#2d3142" font-size="28" font-family="'Geist', sans-serif" font-weight="600">同一任务，三种接口</text>
+  <text x="60" y="128" fill="#7a8399" font-size="12" font-family="'Geist', sans-serif">模型同为 Claude Sonnet 4，任务为只读 GitHub 操作，仅接入方式不同（75 次运行）。</text>
+
+  <g font-family="'Geist', sans-serif">
+    <text x="60" y="180" fill="#4f5d75" font-size="11" font-family="'Geist Mono', monospace" letter-spacing="0.08em">① TOKEN（最简单任务“仓库用什么语言”）</text>
+    <rect x="60" y="200" width="300" height="44" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+    <text x="210" y="227" fill="#2d3142" font-size="13" text-anchor="middle">CLI · 1,365</text>
+    <rect x="60" y="248" width="300" height="44" rx="4" fill="rgba(45,49,66,0.08)" stroke="#4f5d75" stroke-width="1"/>
+    <text x="210" y="275" fill="#2d3142" font-size="13" text-anchor="middle">CLI + Skill · 4,724</text>
+    <rect x="60" y="296" width="300" height="44" rx="4" fill="rgba(235,108,54,0.12)" stroke="#eb6c36" stroke-width="1"/>
+    <text x="210" y="323" fill="#2d3142" font-size="13" text-anchor="middle">MCP · 44,026（约 32×）</text>
+    <text x="392" y="318" fill="#4f5d75" font-size="12">差距几乎全来自 schema：43 个工具的说明书每次全量进上下文，实际只用一两个。</text>
+
+    <text x="60" y="388" fill="#4f5d75" font-size="11" font-family="'Geist Mono', monospace" letter-spacing="0.08em">② 成功率（各 25 次）</text>
+    <rect x="60" y="408" width="140" height="44" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+    <text x="130" y="435" fill="#2d3142" font-size="13" text-anchor="middle">CLI · 100%</text>
+    <rect x="220" y="408" width="140" height="44" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+    <text x="290" y="435" fill="#2d3142" font-size="13" text-anchor="middle">CLI+Skill · 100%</text>
+    <rect x="380" y="408" width="140" height="44" rx="4" fill="rgba(235,108,54,0.12)" stroke="#eb6c36" stroke-width="1"/>
+    <text x="450" y="435" fill="#2d3142" font-size="13" text-anchor="middle">MCP · 72%</text>
+    <text x="560" y="435" fill="#4f5d75" font-size="12">7 次失败全是远程连接超时，属基础设施问题。</text>
+
+    <text x="60" y="508" fill="#4f5d75" font-size="11" font-family="'Geist Mono', monospace" letter-spacing="0.08em">③ 月度成本（1 万次操作，美元）</text>
+    <rect x="60" y="528" width="300" height="44" rx="4" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+    <text x="210" y="555" fill="#2d3142" font-size="13" text-anchor="middle">CLI · 约 $3.2</text>
+    <rect x="60" y="576" width="300" height="44" rx="4" fill="rgba(235,108,54,0.12)" stroke="#eb6c36" stroke-width="1"/>
+    <text x="210" y="603" fill="#2d3142" font-size="13" text-anchor="middle">MCP 直连 · 约 $55.2</text>
+    <rect x="60" y="624" width="300" height="44" rx="4" fill="rgba(45,49,66,0.08)" stroke="#4f5d75" stroke-width="1"/>
+    <text x="210" y="651" fill="#2d3142" font-size="13" text-anchor="middle">MCP 走网关 · 约 $5（schema 过滤后）</text>
+    <text x="392" y="596" fill="#4f5d75" font-size="12">网关只下发相关工具，可削减约 90% token。</text>
+  </g>
+
+  <rect x="60" y="708" width="960" height="140" rx="6" fill="rgba(45,49,66,0.03)" stroke="rgba(45,49,66,0.18)" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="84" y="740" fill="#4f5d75" font-size="11" font-family="'Geist Mono', monospace" letter-spacing="0.08em">读数据前记得三件事</text>
+  <text x="84" y="776" fill="#2d3142" font-size="13" font-weight="600">1 · token 差距是 schema 注入问题，不是协议原罪</text>
+  <text x="84" y="800" fill="#4f5d75" font-size="12">规范已提供 ttlMs 缓存、工具过滤、网关切片等缓解手段。</text>
+  <text x="84" y="828" fill="#2d3142" font-size="13" font-weight="600">2 · 测的是 gh 这类传统 CLI，外推到新 CLI 会失真</text>
+  <text x="84" y="844" fill="#4f5d75" font-size="12">Smithery 756-run：CLI 更省 token（64,916 vs 94,823）但 MCP 成功率更高（91.7% vs 83.3%）。</text>
+</svg>

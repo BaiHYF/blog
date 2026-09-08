@@ -1,0 +1,41 @@
+<svg width="646" height="335" viewBox="0 0 1080 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-glossary-title fig-glossary-desc">
+  <title id="fig-glossary-title">常用术语速览</title>
+  <desc id="fig-glossary-desc">左列协议与结构术语，右列机制与概念术语。</desc>
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap');</style>
+  </defs>
+  <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+  <text x="60" y="60" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" letter-spacing="0.18em">GLOSSARY</text>
+  <text x="60" y="100" fill="#2d3142" font-size="28" font-family="'Geist', sans-serif" font-weight="600">术语速览</text>
+
+  <g font-family="'Geist', sans-serif">
+    <rect x="60" y="140" width="460" height="28" rx="4" fill="rgba(45,49,66,0.05)"/>
+    <text x="84" y="159" fill="#4f5d75" font-size="12" font-weight="600">协议与结构</text>
+    <text x="84" y="204" fill="#2d3142" font-size="13" font-weight="600">Agent</text>
+    <text x="232" y="204" fill="#4f5d75" font-size="12">能自主规划并调用工具的 AI 程序</text>
+    <text x="84" y="232" fill="#2d3142" font-size="13" font-weight="600">CLI</text>
+    <text x="232" y="232" fill="#4f5d75" font-size="12">命令行接口，通过命令使用的程序</text>
+    <text x="84" y="260" fill="#2d3142" font-size="13" font-weight="600">MCP</text>
+    <text x="232" y="260" fill="#4f5d75" font-size="12">模型上下文协议，工具调用协议</text>
+    <text x="84" y="288" fill="#2d3142" font-size="13" font-weight="600">Host / Client / Server</text>
+    <text x="84" y="308" fill="#4f5d75" font-size="12">宿主 / 协议客户端 / 能力服务端</text>
+    <text x="84" y="336" fill="#2d3142" font-size="13" font-weight="600">Tool / Resource / Prompt</text>
+    <text x="84" y="356" fill="#4f5d75" font-size="12">可调工具 / 可读资源 / 提示模板</text>
+    <text x="84" y="384" fill="#2d3142" font-size="13" font-weight="600">stdio / Streamable HTTP</text>
+    <text x="84" y="404" fill="#4f5d75" font-size="12">本地管道传输 / 远程 HTTP 传输</text>
+
+    <rect x="560" y="140" width="460" height="28" rx="4" fill="rgba(45,49,66,0.05)"/>
+    <text x="584" y="159" fill="#4f5d75" font-size="12" font-weight="600">机制与概念</text>
+    <text x="584" y="204" fill="#2d3142" font-size="13" font-weight="600">Schema</text>
+    <text x="732" y="204" fill="#4f5d75" font-size="12">工具参数的结构化描述</text>
+    <text x="584" y="232" fill="#2d3142" font-size="13" font-weight="600">Skill</text>
+    <text x="732" y="232" fill="#4f5d75" font-size="12">指导模型完成任务的知识文档（SKILL.md）</text>
+    <text x="584" y="260" fill="#2d3142" font-size="13" font-weight="600">Token</text>
+    <text x="732" y="260" fill="#4f5d75" font-size="12">模型计费与上下文的基本单位</text>
+    <text x="584" y="288" fill="#2d3142" font-size="13" font-weight="600">Ambient authority</text>
+    <text x="584" y="308" fill="#4f5d75" font-size="12">进程凭继承环境凭证获得权限的机制</text>
+    <text x="584" y="336" fill="#2d3142" font-size="13" font-weight="600">租户</text>
+    <text x="732" y="336" fill="#4f5d75" font-size="12">多用户系统中相互隔离的数据与权限单位</text>
+  </g>
+</svg>

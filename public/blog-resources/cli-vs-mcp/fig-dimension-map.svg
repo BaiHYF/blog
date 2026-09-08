@@ -1,0 +1,68 @@
+<svg width="646" height="706" viewBox="0 0 1080 1180" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="fig-dimension-map-title fig-dimension-map-desc">
+  <title id="fig-dimension-map-title">CLI 与 MCP 十维对照</title>
+  <desc id="fig-dimension-map-desc">十个维度上的对照，每个结论都附前提，避免谁绝对胜出的误读。</desc>
+  <defs>
+    <style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;display=swap');</style>
+  </defs>
+  <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+  <text x="60" y="60" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" letter-spacing="0.18em">DIMENSION MAP · 10 AXES</text>
+  <text x="60" y="100" fill="#2d3142" font-size="28" font-family="'Geist', sans-serif" font-weight="600">CLI 与 MCP 十维对照</text>
+  <text x="60" y="130" fill="#7a8399" font-size="12" font-family="'Geist', sans-serif">每格结论都附前提。CLI 优势的前提通常是“模型对命令有先验 / 本地单人”；MCP 优势的前提通常是“多宿主 / 代表他人 / 远程”。</text>
+
+  <g font-family="'Geist', sans-serif">
+    <rect x="60" y="160" width="520" height="210" rx="6" fill="#ffffff" stroke="rgba(45,49,66,0.18)" stroke-width="1"/>
+    <rect x="76" y="176" width="488" height="28" rx="4" fill="rgba(45,49,66,0.04)"/>
+    <text x="84" y="195" fill="#2d3142" font-size="13" font-weight="600">成本与效率</text>
+    <text x="92" y="232" fill="#4f5d75" font-size="12" font-weight="600">Token</text>
+    <text x="92" y="252" fill="#2d3142" font-size="12">CLI：命令自带语义，上下文轻</text>
+    <text x="92" y="270" fill="#7a8399" font-size="11">前提：模型熟命令。MCP：schema 进上下文，4–32× 差距</text>
+    <text x="92" y="306" fill="#4f5d75" font-size="12" font-weight="600">链路</text>
+    <text x="92" y="326" fill="#2d3142" font-size="12">CLI：模型→shell→命令。MCP：多一跳</text>
+    <text x="92" y="344" fill="#7a8399" font-size="11">前提：本地毫秒级可忽略，远程可感知</text>
+
+    <rect x="600" y="160" width="420" height="210" rx="6" fill="#ffffff" stroke="rgba(45,49,66,0.18)" stroke-width="1"/>
+    <rect x="616" y="176" width="388" height="28" rx="4" fill="rgba(45,49,66,0.04)"/>
+    <text x="624" y="195" fill="#2d3142" font-size="13" font-weight="600">使用与调试</text>
+    <text x="632" y="232" fill="#4f5d75" font-size="12" font-weight="600">组合性</text>
+    <text x="632" y="252" fill="#2d3142" font-size="12">CLI：管道脚本一次成链</text>
+    <text x="632" y="270" fill="#7a8399" font-size="11">前提：任务确定可脚本化。MCP：逐步调用</text>
+    <text x="632" y="306" fill="#4f5d75" font-size="12" font-weight="600">调试</text>
+    <text x="632" y="326" fill="#2d3142" font-size="12">CLI：人可原样复现。MCP：需专用工具</text>
+    <text x="632" y="344" fill="#7a8399" font-size="11">CLI 透明可复现；MCP 契约清晰</text>
+
+    <rect x="60" y="390" width="520" height="270" rx="6" fill="#ffffff" stroke="rgba(45,49,66,0.18)" stroke-width="1"/>
+    <rect x="76" y="406" width="488" height="28" rx="4" fill="rgba(235,108,54,0.06)"/>
+    <text x="84" y="425" fill="#2d3142" font-size="13" font-weight="600">发现、授权与安全</text>
+    <text x="92" y="462" fill="#4f5d75" font-size="12" font-weight="600">能力发现</text>
+    <text x="92" y="482" fill="#2d3142" font-size="12">CLI：--help 逐步探索，参数靠推断</text>
+    <text x="92" y="500" fill="#7a8399" font-size="11">MCP：初始化即拿全量清单，结构化</text>
+    <text x="92" y="536" fill="#4f5d75" font-size="12" font-weight="600">授权</text>
+    <text x="92" y="556" fill="#2d3142" font-size="12">CLI：凭证继承，无协议级租户/审计</text>
+    <text x="92" y="574" fill="#7a8399" font-size="11">MCP：OAuth、按用户 scope、可撤销</text>
+    <text x="92" y="610" fill="#4f5d75" font-size="12" font-weight="600">安全</text>
+    <text x="92" y="630" fill="#2d3142" font-size="12">CLI：给了 shell 就是瑞士军刀</text>
+    <text x="92" y="648" fill="#7a8399" font-size="11">MCP：显式工具边界；schema 不授业务权限</text>
+
+    <rect x="600" y="390" width="420" height="270" rx="6" fill="#ffffff" stroke="rgba(45,49,66,0.18)" stroke-width="1"/>
+    <rect x="616" y="406" width="388" height="28" rx="4" fill="rgba(235,108,54,0.06)"/>
+    <text x="624" y="425" fill="#2d3142" font-size="13" font-weight="600">状态、复用与运维</text>
+    <text x="632" y="462" fill="#4f5d75" font-size="12" font-weight="600">状态</text>
+    <text x="632" y="482" fill="#2d3142" font-size="12">CLI：进程即开即退，内存清空</text>
+    <text x="632" y="500" fill="#7a8399" font-size="11">MCP：可缓存中间态；但长驻≠管状态</text>
+    <text x="632" y="536" fill="#4f5d75" font-size="12" font-weight="600">跨客户端复用</text>
+    <text x="632" y="556" fill="#2d3142" font-size="12">CLI：能跑 shell 即通用</text>
+    <text x="632" y="574" fill="#7a8399" font-size="11">MCP：支持 MCP ≠ 各宿主体验一致</text>
+    <text x="632" y="610" fill="#4f5d75" font-size="12" font-weight="600">运维</text>
+    <text x="632" y="630" fill="#2d3142" font-size="12">CLI：依赖 40 年稳定 shell，管命令兼容</text>
+    <text x="632" y="648" fill="#7a8399" font-size="11">MCP：规范演进快，须跟进版本与宿主</text>
+
+    <rect x="60" y="680" width="960" height="200" rx="6" fill="rgba(45,49,66,0.03)" stroke="rgba(45,49,66,0.18)" stroke-width="1" stroke-dasharray="4,4"/>
+    <text x="84" y="712" fill="#4f5d75" font-size="11" font-family="'Geist Mono', monospace" letter-spacing="0.08em">核心前提（横切全部维度）</text>
+    <text x="84" y="748" fill="#2d3142" font-size="13" font-weight="600">1 · 此 CLI 非彼 CLI</text>
+    <text x="84" y="772" fill="#4f5d75" font-size="12">传统 CLI（git/gh/docker）的优势不自动落在新做的 Agent 原生 CLI 上。</text>
+    <text x="84" y="812" fill="#2d3142" font-size="13" font-weight="600">2 · 执行环境是硬前提</text>
+    <text x="84" y="836" fill="#4f5d75" font-size="12">目标 Agent 能不能跑 shell，决定 CLI 是否在候选名单内。</text>
+    <text x="84" y="856" fill="#7a8399" font-size="11">不能跑 shell 的网页端 / 嵌入式 / 沙箱环境 → CLI 出局。</text>
+  </g>
+</svg>
