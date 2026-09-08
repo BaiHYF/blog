@@ -63,7 +63,20 @@
   --star: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 0c.5 5.5 5 10 10 12.5-5 2.5-9.5 7-10 12.5-.5-5.5-5-10-10-12.5C7 10 11.5 5.5 12 0z' fill='%23ffffff'/%3E%3C/svg%3E");
 }
 
+/* Registered channels let the content veil interpolate with the theme fade. */
+@property --veil-r { syntax: '<number>'; inherits: true; initial-value: 250; }
+@property --veil-g { syntax: '<number>'; inherits: true; initial-value: 249; }
+@property --veil-b { syntax: '<number>'; inherits: true; initial-value: 246; }
+
 html { font-size: 100%; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; overflow-x: clip; }
+
+html.theme-transition-ready {
+  transition:
+    color var(--theme-transition-duration) var(--theme-transition-easing),
+    --veil-r var(--theme-transition-duration) var(--theme-transition-easing),
+    --veil-g var(--theme-transition-duration) var(--theme-transition-easing),
+    --veil-b var(--theme-transition-duration) var(--theme-transition-easing);
+}
 
 body {
   min-height: 100vh;
@@ -85,12 +98,13 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* ==========================================================================
-   LAYER 0: Background canvas (CSS approximation of the Earendil shader)
+   LAYER 0: Background canvas (WebGL shader with CSS fallback)
    ========================================================================== */
 .background {
   position: fixed;
   inset: 0;
   z-index: 0;
+  /* CSS gradient fallback shown when WebGL is unavailable or before ready. */
   background: radial-gradient(150% 120% at 50% 40%, var(--bg-a) 0%, var(--bg-b) 58%, var(--bg-c) 100%);
   transition: background var(--theme-transition-duration) var(--theme-transition-easing);
 }
@@ -98,11 +112,24 @@ button { font-family: inherit; cursor: pointer; }
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 0;
   opacity: 0.10;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.2 0 0 0 0 0.18 0 0 0 0 0.15 0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   pointer-events: none;
-  mix-blend-mode: multiply;
 }
+.background canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity 1000ms ease;
+  image-rendering: auto;
+}
+.background canvas.shader-ready { opacity: 1; }
+body.no-webgl .background canvas { display: none; }
 
 /* ==========================================================================
    SHARED SITE FRAME
@@ -466,6 +493,11 @@ button { font-family: inherit; cursor: pointer; }
    PAGE FADE-IN
    ========================================================================== */
 .page { animation: pageEnter 0.4s ease both; }
+.page.is-leaving {
+  opacity: 0;
+  transition: opacity 0.22s ease-out;
+  animation: none;
+}
 @keyframes pageEnter { from { opacity: 0; } to { opacity: 1; } }
 body.skip-intro .page { animation-duration: 0.01ms; }
 

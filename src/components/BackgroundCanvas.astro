@@ -1,0 +1,13 @@
+---
+import { kUrlBase } from "$consts";
+
+const emblemUrl = `${kUrlBase}/static/emblem.svg`;
+---
+
+<div class="background" aria-hidden="true">
+  <canvas id="canvas" data-logo={emblemUrl}></canvas>
+</div>
+
+<script>
+  import "../scripts/ocean-shader.js";
+</script>

@@ -1,6 +1,7 @@
 ---
 import Header from "$components/Header.astro";
 import Footer from "$components/Footer.astro";
+import BackgroundCanvas from "$components/BackgroundCanvas.astro";
 
 interface Props {
   pageType?: string;
@@ -14,11 +15,17 @@ const { pageType = "" } = Astro.props;
   <head>
     <slot name="head" />
   </head>
-  <body>
-    <div class="background" aria-hidden="true"></div>
+  <body
+    hx-boost="true"
+    hx-ext="head-support"
+    hx-select="div.page"
+    hx-target="div.page"
+    hx-swap="outerHTML swap:220ms"
+  >
+    <BackgroundCanvas />
     <div class="site-frame">
       <Header />
-      <div class="page" data-page-type={pageType}>
+      <div class="page" data-page-type={pageType} hx-history-elt>
         <slot />
       </div>
       <Footer />
@@ -48,6 +55,12 @@ const { pageType = "" } = Astro.props;
           });
         }
 
+        // Enable CSS theme interpolation only after the initial preference is
+        // applied, so a stored dark preference does not animate on first paint.
+        requestAnimationFrame(() => {
+          document.documentElement.classList.add("theme-transition-ready");
+        });
+
         const menuBtn = document.querySelector(".menu-trigger-toggle");
         const menu = document.getElementById("site-menu-links");
         if (menuBtn && menu) {
@@ -57,6 +70,61 @@ const { pageType = "" } = Astro.props;
             document.body.classList.toggle("mobile-menu-open", !menu.hidden);
           });
         }
+      })();
+    </script>
+
+    <script is:inline src={`${import.meta.env.BASE_URL}static/htmx.min.js`}></script>
+    <script is:inline src={`${import.meta.env.BASE_URL}static/head-support.js`}></script>
+
+    <script is:inline>
+      // htmx navigation config: scroll memory + fade transitions + native fallback.
+      (function () {
+        if (!window.htmx) return;
+
+        htmx.config.scrollIntoViewOnBoost = false;
+
+        function fallback(evt) {
+          const path =
+            (evt.detail && (evt.detail.pathInfo && evt.detail.pathInfo.requestPath)) ||
+            (evt.detail && evt.detail.requestConfig && evt.detail.requestConfig.path);
+          if (path) window.location.href = path;
+        }
+        htmx.on("htmx:sendError", fallback);
+        htmx.on("htmx:swapError", fallback);
+        htmx.on("htmx:responseError", fallback);
+
+        const scrollMemory = {};
+
+        function pathKey(url) {
+          try {
+            return new URL(url, location.href).pathname;
+          } catch (err) {
+            return url;
+          }
+        }
+
+        function captureScroll() {
+          scrollMemory[pathKey(window.location.href)] = window.scrollY;
+        }
+
+        htmx.on("htmx:beforeSwap", function () {
+          captureScroll();
+          document.body.classList.add("skip-intro");
+          const current = document.querySelector(".page");
+          if (current) current.classList.add("is-leaving");
+        });
+
+        htmx.on("htmx:afterSwap", function () {
+          window.scrollTo(0, 0);
+          const current = document.querySelector(".page");
+          if (current) current.classList.remove("is-leaving");
+        });
+
+        // Restore scroll on history (back/forward) navigation.
+        htmx.on("htmx:historyRestore", function (evt) {
+          const key = pathKey(evt.detail.path || window.location.href);
+          window.scrollTo(0, scrollMemory[key] || 0);
+        });
       })();
     </script>
   </body>

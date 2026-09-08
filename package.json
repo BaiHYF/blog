@@ -27,7 +27,8 @@
     "@notionhq/client": "^5.23.2",
     "astro": "^7.1.6",
     "astro-typst": "^0.12.4",
-    "cheerio": "^1.2.0"
+    "cheerio": "^1.2.0",
+    "htmx.org": "^2.0.10"
   },
   "devDependencies": {
     "vite": "^8.2.0"

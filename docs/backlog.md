@@ -1,29 +1,40 @@
-# Backlog — Earendil 风格复刻（待办）
+# Backlog — Earendil 风格复刻（已实现 + 后续待办）
 
-以上是对线 baiheyufei's-blog 的 Earendil 风格改造，按用户决定先做了 CSS 近似版，以下两项明确推迟，待全部工作结束后再评估是否实施。
+## 已实现
 
-## 1. 完全复刻 WebGL 着色器背景
-当前 `.background` 用 CSS 径向渐变 + `feTurbulence` 噪点纸纹近似 Earendil 的 shader（地平线 + 纸质纹理 + 明暗双主题）。
+### 1. WebGL 着色器背景（完全复刻）
+`src/components/BackgroundCanvas.astro` + `src/scripts/ocean-shader.js`：
+从 earendil.com 移植 "ocean weaves" 光线步进 shader（MIT 许可，来源 afl_ext）。
+- 海面波光（raymarch + FBM 波）＋ 日夜天空 ＋ 夜晚星空 ＋ 胶片颗粒
+- logo 水面反射（`public/static/emblem.svg`）＋ 点击涟漪（投影到 y=0 水面）
+- `u_night` 随 `<html>.dark` 700ms 平滑混合；`@property --veil-r/g/b` 让纸幕同步淡变
+- 内容页降为 15fps / 0.5 分辨率；`prefers-reduced-motion` 降低波速
+- WebGL 不可用时回退到 CSS 渐变（`body.no-webgl .background canvas { display:none }`）
 
-目标：复刻 earendil.com 的 `<canvas>` WebGL fragment shader（纸张噪点材质 + 地平线 + 相机透视），替换 `src/styles/global.css` 里的 `.background` 元素。
-- 涉及：新建 `src/components/BackgroundCanvas`，全局初始化脚本
-- 需保留明暗主题同步（`--veil-r/g/b`，以及 `--theme-transition-duration` 的平滑过渡）
-- 注意 `prefers-reduced-motion` 降级
-- 参考：earendil.com `/static/script.js` 中的 canvas 初始化与 shader
+### 2. htmx 局部换页 + 滚动记忆
+`src/components/PageFrame.astro`：
+- `<body hx-boost hx-select="div.page" hx-target="div.page" hx-swap="outerHTML swap:220ms">`
+- `.page` 加 `hx-history-elt`；自托管 `public/static/htmx.min.js` + `head-support.js`
+- `htmx:beforeSwap` 捕获滚动、加 `.is-leaving`；`afterSwap` 复位到顶；`historyRestore` 恢复 back/forward 滚动
+- `htmx:sendError/swapError/responseError` 回退原生跳转
+- `astro.config.mjs` 移除了 `prefetch.prefetchAll`（避免与 htmx 双请求）
 
-## 2. 复刻 htmx 局部换页 + 滚动记忆 + i18n
-当前保留 Astro 原生导航 + 页面淡入（`.page` 的 `pageEnter` 动画）。
+## 后续待办（可选进阶）
 
-目标：引入 htmx 无刷新换页（`hx-boost`/`hx-select="div.page"`），并加入：
-- 滚动位置记忆（back/forward 恢复）
-- 内容页间的局部淡出/淡入（`.content-page` 在 content-to-content 导航时只过渡内容面）
-- i18n 语言切换（EN/中文），参考 earendil: host `/static/i18n.js` + `data-i18n-*` 属性
+### A. 内容页间细粒度过渡（content-page-swap）
+目前整页交叉淡化（`.page.is-leaving` + `pageEnter`）。Earendil 在 content→content 导航时只淡出
+`.content-surface`、让背景纸幕不闪断。要复刻需：`beforeSwap` 探测两侧是否都是 `.content-page`，
+加 `body.content-page-swap`，并给 `.content-surface` 单独过渡。
 
-注意：与 Astro 的 `prefetch: { prefetchAll: true }` 存在重叠，需评估取舍。
+### B. htmx 消毒（XSS）
+当前未引入 dompurify。自托管可信同源内容暂可。若以后引入外部 / 用户提交的 Markdown，再加
+`purify.min.js` 与 `htmx:beforeProcessNode` 过滤。
 
-## 实现现状记录
-- 字体：等宽 `MapleMono`、衬线 `Noto Serif SC Variable`（`@fontsource-variable/noto-serif-sc`）
-- 背景：CSS 近似（见上）
-- 导航：MENU 切换（桌面右对齐下拉 / 移动端全屏面板）
-- 主题：`.dark` on `<html>`，600ms 平滑过渡，localStorage 持久化
-- 页面：首页 hero、文章列表、正文（`.prose` 衬线）、about、friend 均已统一
+### C. i18n 语言切换
+Earendil 有 EN/中文切换（host `/static/i18n.js` + `data-i18n-*`）。本次未要求，未实现。
+
+## 现状速览
+- 字体：等宽 `MapleMono`、衬线 `Noto Serif SC Variable`
+- 背景：WebGL shader（CSS 渐变兜底）
+- 换页：htmx 局部刷新 ＋ 滚动记忆；首页 hero 居中
+- 主题：`.dark` on `<html>`，600ms CSS 过渡 + shader 700ms 混合，localStorage 持久化

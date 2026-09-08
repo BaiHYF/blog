@@ -13,12 +13,6 @@ const EnvStr = (optional = true) =>
 const MustEnvStr = (optional = false) => EnvStr(optional);
 
 export default defineConfig({
-  // Whether to prefetch links while hovering.
-  // See: https://docs.astro.build/en/guides/prefetch/
-  prefetch: {
-    prefetchAll: true,
-  },
-
   site: SITE,
   base: URL_BASE,
 
