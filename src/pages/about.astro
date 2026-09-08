@@ -1,14 +1,18 @@
 ---
-import Layout from "$layouts/BlogPost.astro";
+import BaseHead from "$components/BaseHead.astro";
+import PageFrame from "$components/PageFrame.astro";
 // @ts-ignore
 import AboutContent from "../../content/other/about.typ?html&body";
 ---
 
-<Layout
-  id={false}
-  title="About"
-  description="Things about Baihyf"
-  date={new Date("Feb 10 2025")}
->
-  <AboutContent />
-</Layout>
+<PageFrame pageType="content-page">
+  <BaseHead slot="head" title="About" description="Things about Baihyf" />
+  <main class="content-page">
+    <article class="content-surface">
+      <h1 class="post-title">About</h1>
+      <div class="prose">
+        <AboutContent />
+      </div>
+    </article>
+  </main>
+</PageFrame>
