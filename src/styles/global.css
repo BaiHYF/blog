@@ -7,8 +7,10 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --mono-font: "MapleMono", "SFMono-Regular", ui-monospace, "Menlo", "Consolas", monospace;
+  --mono-font: "Departure Mono", "MapleMono", ui-monospace, "SFMono-Regular", "Menlo", "Consolas", monospace;
   --serif-font: "Noto Serif SC Variable", "Noto Serif SC", Georgia, "Songti SC", serif;
+  /* 花体 for titles/hero only: Latin -> Cormorant Garamond, CJK -> LXGW WenKai. */
+  --decorative-font: "Cormorant Garamond Variable", "LXGW WenKai", "Noto Serif SC Variable", Georgia, serif;
 
   --font-size-xs: 0.8125rem;
   --font-size-sm: 0.9375rem;
@@ -315,7 +317,11 @@ body.no-webgl .background canvas { display: none; }
   orphans: 3;
   widows: 3;
 }
-.prose :is(h1, h2, h3, h4, h5, h6) { text-wrap: balance; break-after: avoid; }
+.prose :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--decorative-font);
+  text-wrap: balance;
+  break-after: avoid;
+}
 .prose p { margin-block: 0.5em; }
 .prose a {
   color: inherit;
@@ -392,7 +398,7 @@ body.no-webgl .background canvas { display: none; }
 }
 .home-hero-text {
   margin: 0;
-  font-family: var(--serif-font);
+  font-family: var(--decorative-font);
   font-size: var(--text-hero);
   line-height: var(--leading-tight);
   font-style: italic;
@@ -437,7 +443,7 @@ body.no-webgl .background canvas { display: none; }
   white-space: nowrap;
 }
 .posts-list .post-name {
-  font-family: var(--serif-font);
+  font-family: var(--decorative-font);
   font-size: var(--text-title);
   line-height: var(--leading-tight);
   font-style: italic;
@@ -482,7 +488,7 @@ body.no-webgl .background canvas { display: none; }
 .post-meta .post-date { font-family: var(--mono-font); color: var(--color-muted); }
 .post-meta h1.post-title {
   grid-column: 1 / -1;
-  font-family: var(--serif-font);
+  font-family: var(--decorative-font);
   font-size: var(--text-2xl);
   line-height: var(--leading-tight);
   font-weight: 400;
