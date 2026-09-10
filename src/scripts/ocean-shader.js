@@ -569,6 +569,9 @@ void main() { gl_Position = vec4(position, 0.0, 1.0); }
     var dt = (now - lastFrameTime) / 1000;
     lastFrameTime = now;
 
+    // Skip drawing while hidden (e.g. the About page hides it behind its portrait).
+    if (!canvas.clientWidth || !canvas.clientHeight) return;
+
     var contentNow = !!document.querySelector('.content-page');
     if (contentNow !== isContentPage) {
       isContentPage = contentNow;

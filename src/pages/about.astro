@@ -1,18 +1,22 @@
 ---
 import BaseHead from "$components/BaseHead.astro";
 import PageFrame from "$components/PageFrame.astro";
+import AboutBackground from "$components/AboutBackground.astro";
 // @ts-ignore
 import AboutContent from "../../content/other/about.typ?html&body";
 ---
 
 <PageFrame pageType="content-page">
   <BaseHead slot="head" title="About" description="Things about Baihyf" />
-  <main class="content-page">
-    <article class="content-surface">
-      <h1 class="post-title">About</h1>
-      <div class="prose">
-        <AboutContent />
-      </div>
-    </article>
+  <main class="content-page page--about">
+    <div class="about-layout">
+      <article class="content-surface">
+        <h1 class="post-title">About</h1>
+        <div class="prose">
+          <AboutContent />
+        </div>
+      </article>
+      <AboutBackground />
+    </div>
   </main>
 </PageFrame>

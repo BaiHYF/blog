@@ -134,6 +134,68 @@ button { font-family: inherit; cursor: pointer; }
 body.no-webgl .background canvas { display: none; }
 
 /* ==========================================================================
+   ABOUT PAGE: full portrait panel (right) + readable text column (left)
+   ========================================================================== */
+/* Keep the paper gradient backdrop; drop only the ocean shader. */
+body:has(.about-figure) .background canvas { display: none; }
+/* No radial veil: the text sits on the paper backdrop, the figure on its own panel. */
+.page--about::before { background: none; }
+
+.page--about .about-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) min(44vw, calc(100dvh * 0.6667));
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+}
+.page--about .content-surface {
+  margin: 0;
+  width: min(100%, 640px);
+}
+.page--about .about-figure {
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  background-image: var(--about-light);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.dark .page--about .about-figure { background-image: var(--about-dark); }
+.page--about .about-figure canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity 1000ms ease;
+}
+.page--about .about-figure canvas.shader-ready { opacity: 1; }
+body.no-webgl .page--about .about-figure canvas { display: none; }
+
+/* The portrait is now the page figure, so hide the inline copy. */
+.page--about .thumbnail-container { display: none; }
+.page--about .blog-desc { display: block; }
+.page--about .blog-desc > div:first-child { margin-left: 0 !important; }
+
+@media (max-width: 800px) {
+  .page--about .about-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .page--about .about-figure {
+    position: relative;
+    order: -1;
+    height: auto;
+    aspect-ratio: 1024 / 1536;
+    width: min(100%, 360px);
+    margin-inline: auto;
+  }
+}
+
+
+/* ==========================================================================
    SHARED SITE FRAME
    ========================================================================== */
 .site-frame {

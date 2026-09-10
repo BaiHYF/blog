@@ -1,0 +1,18 @@
+---
+import { kUrlBase } from "$consts";
+
+const light = `${kUrlBase}/images/0612_5.png`;
+const dark = `${kUrlBase}/images/0612_10.png`;
+---
+
+<aside
+  class="about-figure"
+  aria-hidden="true"
+  style={`--about-light:url('${light}');--about-dark:url('${dark}')`}
+>
+  <canvas id="about-canvas"></canvas>
+</aside>
+
+<script>
+  import "../scripts/about-shader.js";
+</script>
