@@ -32,3 +32,12 @@ pnpm-debug.log*
 # typ/
 # packages/
 vision-test/
+inbox/
+.openchamber/
+
+# some articles
+content/article/ciallo.typ
+content/article/38da90ec819f.typ
+content/article/3a0a90ec819f.typ
+content/article/note.typ
+content/article/easy-vibe.typ
